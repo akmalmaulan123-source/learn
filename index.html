@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Untuk Kylie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blush:#f7dbe3;
+    --rose:#e6a7bd;
+    --deep-rose:#c97a97;
+    --cream:#fff8f3;
+    --plum:#5c3e4d;
+    --plum-soft:#8a6675;
+    --gold:#d3a15c;
+    box-sizing:border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top: env(safe-area-inset-top, 0px);}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    min-height:100%;
+    background:
+      radial-gradient(circle at 20% 15%, #fdeef1 0%, transparent 45%),
+      radial-gradient(circle at 85% 80%, #f6e0e8 0%, transparent 50%),
+      linear-gradient(180deg, var(--cream) 0%, var(--blush) 100%);
+    font-family:'Jost', sans-serif;
+    color:var(--plum);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  .stage{
+    width:100%;
+    max-width:480px;
+    padding:56px 32px 64px;
+    text-align:center;
+    position:relative;
+    z-index:2;
+  }
+
+  .eyebrow{
+    font-size:13px;
+    letter-spacing:0.14em;
+    color:var(--plum-soft);
+    margin:0 0 6px;
+  }
+
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    font-size:clamp(40px, 10vw, 58px);
+    line-height:1.05;
+    margin:0 0 18px;
+    color:var(--plum);
+  }
+
+  .sub{
+    font-size:15.5px;
+    color:var(--plum-soft);
+    line-height:1.6;
+    max-width:320px;
+    margin:0 auto 44px;
+  }
+
+  /* --- Bud / button --- */
+  .bud-wrap{
+    position:relative;
+    width:180px;
+    height:180px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .bud-btn{
+    all:unset;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:radial-gradient(circle at 35% 30%, #ffffff, var(--blush) 60%, var(--rose) 100%);
+    box-shadow:0 10px 30px rgba(201,122,151,0.35), inset 0 0 0 1px rgba(255,255,255,0.6);
+    transition:transform .35s ease, box-shadow .35s ease;
+    animation:breathe 3.2s ease-in-out infinite;
+  }
+  .bud-btn:hover{ transform:scale(1.05); }
+  .bud-btn:focus-visible{ outline:2px solid var(--deep-rose); outline-offset:4px; }
+  .bud-btn:active{ transform:scale(0.94); }
+
+  @keyframes breathe{
+    0%,100%{ transform:scale(1); }
+    50%{ transform:scale(1.045); }
+  }
+
+  .bud-btn svg{ width:52px; height:52px; pointer-events:none; }
+
+  .bud-label{
+    position:absolute;
+    bottom:-34px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:12.5px;
+    letter-spacing:0.06em;
+    color:var(--plum-soft);
+    white-space:nowrap;
+  }
+
+  .stage.opened .bud-wrap{ display:none; }
+
+  /* --- Petal burst --- */
+  .burst{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    pointer-events:none;
+  }
+  .petal{
+    position:absolute;
+    width:14px;
+    height:20px;
+    border-radius:70% 5% 70% 5%;
+    background:var(--rose);
+    opacity:0;
+    top:50%;
+    left:50%;
+  }
+
+  /* --- Message --- */
+  .message{
+    opacity:0;
+    transform:translateY(14px);
+    max-width:360px;
+    margin:8px auto 0;
+  }
+  .stage.opened .message{
+    animation:rise 900ms cubic-bezier(.2,.8,.2,1) forwards;
+    animation-delay:900ms;
+  }
+  @keyframes rise{
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .message .flower-row{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .message .flower-row svg{ width:22px; height:22px; }
+
+  .message p{
+    font-family:'Cormorant Garamond', serif;
+    font-size:22px;
+    line-height:1.55;
+    color:var(--plum);
+    margin:0 0 20px;
+  }
+
+  .message .signature{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:19px;
+    color:var(--deep-rose);
+  }
+
+  .reduced-hide{ }
+  @media (prefers-reduced-motion: reduce){
+    .bud-btn{ animation:none; }
+    .message{ transition:none; }
+  }
+
+  footer{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    font-size:11px;
+    letter-spacing:0.08em;
+    color:var(--plum-soft);
+    opacity:0.6;
+    padding-bottom:18px;
+  }
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+  <p class="eyebrow">untuk Kylie</p>
+  <h1>Satu ketukan<br>kecil.</h1>
+  <p class="sub">Tekan kuncup di bawah ini, dan biarkan ia mekar.</p>
+
+  <div class="bud-wrap">
+    <button class="bud-btn" id="budBtn" aria-label="Tekan untuk memekarkan bunga">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M12 21c0-5-3-7-6-9 3 0 6 1.5 6 5.5C12 13.5 15 12 18 12c-3 2-6 4-6 9Z" fill="#c97a97" opacity="0.85"/>
+        <circle cx="12" cy="9" r="4.5" fill="#e6a7bd"/>
+      </svg>
+    </button>
+    <div class="bud-label">tekan di sini</div>
+    <div class="burst" id="burst"></div>
+  </div>
+
+  <div class="message" id="message">
+    <div class="flower-row">
+      <svg viewBox="0 0 24 24"><g fill="#e6a7bd"><circle cx="12" cy="6" r="4"/><circle cx="12" cy="18" r="4"/><circle cx="6" cy="12" r="4"/><circle cx="18" cy="12" r="4"/></g><circle cx="12" cy="12" r="3" fill="#d3a15c"/></svg>
+    </div>
+    <p>Kylie, dari sekian banyak hal yang membuat hari-hariku terasa lebih ringan, namamu selalu ada di urutan pertama. Terima kasih sudah jadi tempat aku pulang, bahkan di hari yang biasa sekalipun.</p>
+    <p class="signature">— Friederich</p>
+  </div>
+</div>
+
+<footer>dibuat dengan hati, khusus untukmu</footer>
+
+<script>
+(function(){
+  const btn = document.getElementById('budBtn');
+  const stage = document.getElementById('stage');
+  const burst = document.getElementById('burst');
+
+  const petalColors = ['#e6a7bd', '#f2c3d4', '#c97a97', '#f7dbe3'];
+
+  function spawnPetals(){
+    const count = 22;
+    for(let i=0;i<count;i++){
+      const p = document.createElement('div');
+      p.className = 'petal';
+      const angle = (Math.PI * 2 * i) / count + (Math.random()*0.3);
+      const dist = 90 + Math.random()*70;
+      const dx = Math.cos(angle) * dist;
+      const dy = Math.sin(angle) * dist;
+      const rot = Math.random()*360;
+      const color = petalColors[Math.floor(Math.random()*petalColors.length)];
+      p.style.background = color;
+      p.style.setProperty('--dx', dx + 'px');
+      p.style.setProperty('--dy', dy + 'px');
+      p.style.setProperty('--rot', rot + 'deg');
+      p.animate([
+        { transform:'translate(-50%,-50%) translate(0,0) rotate(0deg) scale(0.3)', opacity:0 },
+        { transform:'translate(-50%,-50%) translate(' + (dx*0.5) + 'px,' + (dy*0.5) + 'px) rotate(' + (rot*0.5) + 'deg) scale(1)', opacity:1, offset:0.4 },
+        { transform:'translate(-50%,-50%) translate(' + dx + 'px,' + dy + 'px) rotate(' + rot + 'deg) scale(0.85)', opacity:0 }
+      ], {
+        duration: 1200 + Math.random()*500,
+        easing:'cubic-bezier(.2,.7,.3,1)',
+        delay: Math.random()*120
+      });
+      burst.appendChild(p);
+    }
+    setTimeout(()=>{ burst.innerHTML=''; }, 2200);
+  }
+
+  let opened = false;
+  btn.addEventListener('click', function(){
+    if(opened) return;
+    opened = true;
+    spawnPetals();
+    setTimeout(()=>{ stage.classList.add('opened'); }, 260);
+  });
+})();
+</script>
+
+</body>
+</html>
